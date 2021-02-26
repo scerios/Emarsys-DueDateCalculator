@@ -44,3 +44,7 @@ test('GetSetDueDate turnaround time should be 14:12', () => {
 test('GetSetDueDay turnaround day should be TuesDay', () => {
 	expect(calculator.GetSetDueDay(2)).toBe("Tuesday");
 });
+
+test('GetSetMeridiem meridiem should be PM', () => {
+	expect(calculator.GetSetMeridiem(14)).toBe("PM");
+});
