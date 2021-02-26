@@ -120,4 +120,12 @@ export class Calculator {
             return "PM";
         }
     }
+
+    CorrectHoursByMeridiem(meridiem, turnaroundDate) {
+        if (meridiem == "PM" && turnaroundDate.getHours() > 12) {
+            turnaroundDate.setHours(turnaroundDate.getHours() - 12);
+        }
+
+        return turnaroundDate;
+    }
 }
