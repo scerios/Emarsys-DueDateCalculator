@@ -30,3 +30,13 @@ test('CalculateDueDay issue day should be 2', () => {
 		howManyDays: 1
 	});
 });
+
+test('GetSetDueDate turnaround time should be 14:12', () => {
+	let now = new Date();
+	now.setHours(14);
+	now.setMinutes(12);
+
+	expect(calculator.GetSetDueDate(14, 12)).toEqual(
+		now
+	);
+});
