@@ -48,4 +48,16 @@ export class Calculator {
 
         return issueDue;
     }
+
+    CalculateDueDay(issueDue) {
+        for (let i = 0; i < issueDue.howManyDays; i++) {
+            if (!this.workDays.includes(issueDue.day + 1)) {
+                issueDue.day = 1;
+            } else {
+                issueDue.day++;
+            }
+        }
+
+        return issueDue;
+    }
 }
