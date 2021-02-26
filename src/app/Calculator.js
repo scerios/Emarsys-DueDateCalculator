@@ -108,4 +108,16 @@ export class Calculator {
 
         return turnaroundDay;
     }
+
+    GetSetMeridiem(hours) {
+        if (!Number.isInteger(hours) || hours < 0 || hours > 23) {
+            throw new Error("Invalid input hours. Hour must be an integer greater than or equal to 0 and less than or equal to 23.");
+        }
+
+        if (hours < 12) {
+            return "AM";
+        } else {
+            return "PM";
+        }
+    }
 }
