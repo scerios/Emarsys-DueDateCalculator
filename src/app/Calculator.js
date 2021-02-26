@@ -19,3 +19,16 @@ export class Calculator {
         this.issueDue.howManyDays = this.GetHowManyDays(this.turnaround);
         this.issueDue.howManyHours = this.GetHowManyHours(this.turnaround);
     }
+
+    CalculateDueHour(issueDue) {
+        for (let i = 0; i < issueDue.howManyHours; i++) {
+            if (!this.workHours.includes(issueDue.hours + 1)) {
+                issueDue.hours = 9;
+                issueDue.howManyDays++;
+            } else {
+                issueDue.hours += 1;
+            }
+        }
+
+        return issueDue;
+    }
