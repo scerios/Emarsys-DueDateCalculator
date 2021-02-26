@@ -60,4 +60,20 @@ export class Calculator {
 
         return issueDue;
     }
+
+    GetSetDueDate(hours, minutes) {
+        if (!Number.isInteger(hours) || hours < 0 || hours > 23) {
+            throw new Error(`The hours you entered: ${hours} is invalid. Hours must be an integer greater than or equal to 0 and less than or equal to 23.`);
+        }
+
+        if (!Number.isInteger(minutes) || minutes < 0 || minutes > 59) {
+            throw new Error(`The minutes you entered: ${minutes} is invalid. Minutes must be an integer greater than or equal to 0 and less than or equal to 59.`);
+        }
+
+        let turnaroundDate = new Date();
+        turnaroundDate.setHours(hours);
+        turnaroundDate.setMinutes(minutes);
+
+        return turnaroundDate;
+    }
 }
