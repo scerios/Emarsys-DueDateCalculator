@@ -48,3 +48,13 @@ test('GetSetDueDay turnaround day should be TuesDay', () => {
 test('GetSetMeridiem meridiem should be PM', () => {
 	expect(calculator.GetSetMeridiem(14)).toBe("PM");
 });
+
+test('CorrectHoursByMeridiem hours should be 2', () => {
+	let now = new Date();
+	now.setHours(2);
+	now.setMinutes(12);
+
+	expect(calculator.CorrectHoursByMeridiem("PM", now)).toEqual(
+		now
+	);
+});
