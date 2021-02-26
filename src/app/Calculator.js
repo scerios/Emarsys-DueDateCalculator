@@ -76,4 +76,36 @@ export class Calculator {
 
         return turnaroundDate;
     }
+
+    GetSetDueDay(issueDay) {
+        if (issueDay < 1 || issueDay > 5) {
+            throw new Error("Invalid input number. Input must be greater than 0 and less than 6.");
+        }
+
+        let turnaroundDay = "";
+
+        switch (issueDay) {
+            case 1:
+                turnaroundDay = "Monday";
+                break;
+
+            case 2:
+                turnaroundDay = "Tuesday";
+                break;
+
+            case 3:
+                turnaroundDay = "Wednesday";
+                break;
+
+            case 4:
+                turnaroundDay = "Thursday";
+                break;
+
+            case 5:
+                turnaroundDay = "Friday";
+                break;
+        }
+
+        return turnaroundDay;
+    }
 }
