@@ -20,3 +20,13 @@ test('CalculateDueHour issue hours should be 14', () => {
 		howManyDays: 1
 	});
 });
+
+test('CalculateDueDay issue day should be 2', () => {
+	expect(calculator.CalculateDueDay(calculator.issueDue)).toEqual({
+		day: 2,
+		hours: 14,
+		minutes: 12,
+		howManyHours: 6,
+		howManyDays: 1
+	});
+});
