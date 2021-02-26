@@ -24,13 +24,13 @@ export class Calculator {
         this.issueDue = this.CalculateDueHour(this.issueDue);
         this.issueDue = this.CalculateDueDay(this.issueDue);
 
-        let turnaroundDate = this.GetSetDueDate(this.issueDue.hours, this.issueDue.minutes);
+        let turnaroundTime = this.GetSetDueTime(this.issueDue.hours, this.issueDue.minutes);
         let turnaroundDay = this.GetSetDueDay(this.issueDue.day);
         let meridiem = this.GetSetMeridiem(this.issueDue.hours);
 
-        turnaroundDate = this.CorrectHoursByMeridiem(meridiem, turnaroundDate);
+        turnaroundTime = this.CorrectHoursByMeridiem(meridiem, turnaroundTime);
 
-        console.log(`Issue is due by ${turnaroundDate.getHours()}:${turnaroundDate.getMinutes()}${meridiem} on ${turnaroundDay}.`);
+        console.log(`Issue is due by ${turnaroundTime.hours}:${turnaroundTime.minutes}${meridiem} on ${turnaroundDay}.`);
     }
 
     GetHowManyDays(turnaround) {
@@ -74,7 +74,7 @@ export class Calculator {
         return issueDue;
     }
 
-    GetSetDueDate(hours, minutes) {
+    GetSetDueTime(hours, minutes) {
         if (!Number.isInteger(hours) || hours < 0 || hours > 23) {
             throw new Error(`The hours you entered: ${hours} is invalid. Hours must be an integer greater than or equal to 0 and less than or equal to 23.`);
         }
@@ -83,11 +83,12 @@ export class Calculator {
             throw new Error(`The minutes you entered: ${minutes} is invalid. Minutes must be an integer greater than or equal to 0 and less than or equal to 59.`);
         }
 
-        let turnaroundDate = new Date();
-        turnaroundDate.setHours(hours);
-        turnaroundDate.setMinutes(minutes);
+        let turnaroundTime = {
+            hours,
+            minutes
+        };
 
-        return turnaroundDate;
+        return turnaroundTime;
     }
 
     GetSetDueDay(issueDay) {
@@ -134,11 +135,11 @@ export class Calculator {
         }
     }
 
-    CorrectHoursByMeridiem(meridiem, turnaroundDate) {
-        if (meridiem == "PM" && turnaroundDate.getHours() > 12) {
-            turnaroundDate.setHours(turnaroundDate.getHours() - 12);
+    CorrectHoursByMeridiem(meridiem, turnaroundTime) {
+        if (meridiem == "PM" && turnaroundTime.hours > 12) {
+            turnaroundTime.hours = turnaroundTime.hours - 12;
         }
 
-        return turnaroundDate;
+        return turnaroundTime;
     }
 }

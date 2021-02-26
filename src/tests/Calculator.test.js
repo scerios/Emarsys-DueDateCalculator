@@ -31,14 +31,11 @@ test('CalculateDueDay issue day should be 2', () => {
 	});
 });
 
-test('GetSetDueDate turnaround time should be 14:12', () => {
-	let now = new Date();
-	now.setHours(14);
-	now.setMinutes(12);
-
-	expect(calculator.GetSetDueDate(14, 12)).toEqual(
-		now
-	);
+test('GetSetDueTime turnaround time should be 14:12', () => {
+	expect(calculator.GetSetDueTime(14, 12)).toEqual({
+		hours: 14,
+		minutes: 12
+	});
 });
 
 test('GetSetDueDay turnaround day should be TuesDay', () => {
@@ -50,11 +47,12 @@ test('GetSetMeridiem meridiem should be PM', () => {
 });
 
 test('CorrectHoursByMeridiem hours should be 2', () => {
-	let now = new Date();
-	now.setHours(2);
-	now.setMinutes(12);
-
-	expect(calculator.CorrectHoursByMeridiem("PM", now)).toEqual(
-		now
-	);
+	let turnaroundTime = {
+		hours: 14,
+		minutes: 12
+	};
+	expect(calculator.CorrectHoursByMeridiem("PM", turnaroundTime)).toEqual({
+		hours: 2,
+		minutes: 12
+	});
 });
