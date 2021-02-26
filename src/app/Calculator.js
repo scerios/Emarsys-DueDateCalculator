@@ -20,6 +20,19 @@ export class Calculator {
         this.issueDue.howManyHours = this.GetHowManyHours(this.turnaround);
     }
 
+    CalculateDueDate() {
+        this.issueDue = this.CalculateDueHour(this.issueDue);
+        this.issueDue = this.CalculateDueDay(this.issueDue);
+
+        let turnaroundDate = this.GetSetDueDate(this.issueDue.hours, this.issueDue.minutes);
+        let turnaroundDay = this.GetSetDueDay(this.issueDue.day);
+        let meridiem = this.GetSetMeridiem(this.issueDue.hours);
+
+        turnaroundDate = this.CorrectHoursByMeridiem(meridiem, turnaroundDate);
+
+        console.log(`Issue is due by ${turnaroundDate.getHours()}:${turnaroundDate.getMinutes()}${meridiem} on ${turnaroundDay}.`);
+    }
+
     GetHowManyDays(turnaround) {
         if (!Number.isInteger(turnaround) || turnaround < 0) {
             throw new Error("Invalid input number. Input must be an integer greater than or equal to 0.");
